@@ -9,7 +9,9 @@ USERADD_PARAM_${PN} = "-r -s /usr/sbin/nologin bmcweb"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=a6a4edad4aed50f39a66d098d74b265b"
 
-SRC_URI = "git://github.com/openbmc/bmcweb.git"
+#SRC_URI = "git://github.com/openbmc/bmcweb.git"
+
+SRC_URI =  "git://github.com/yuliu0552/bmcweb.git"
 
 PV = "1.0+git${SRCPV}"
 SRCREV = "b79d4eef01f5fd2a24bb8dd28792810aa718cdee"

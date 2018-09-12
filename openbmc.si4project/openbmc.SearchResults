@@ -1,0 +1,316 @@
+---- bmcweb Matches (10 in 7 files) ----
+bmcweb.bb (meta-phosphor\common\recipes-phosphor\interfaces) line 6 : 
+# add a user called httpd for the server to assume
+USERADD_PARAM_${PN} = "-r -s /usr/sbin/nologin bmcweb"
+
+LICENSE = "Apache-2.0"
+LIC_FILES_CHKSUM = "file://LICENCE;md5=a6a4edad4aed50f39a66d098d74b265b"
+
+SRC_URI = "git://github.com/openbmc/bmcweb.git"
+
+PV = "1.0+git${SRCPV}"
+SRCREV = "b79d4eef01f5fd2a24bb8dd28792810aa718cdee"
+bmcweb.bb (meta-phosphor\common\recipes-phosphor\interfaces) line 26 : 
+
+SYSTEMD_SERVICE_${PN} += "bmcweb.service bmcweb.socket"
+
+FULL_OPTIMIZATION = "-Os -pipe "
+
+bmcweb.bbappend (meta-ibm\recipes-phosphor\bmcweb) line 2 : 
+
+# Behind NGINX so disable SSL in bmcweb
+EXTRA_OECMAKE += "-DBMCWEB_INSECURE_DISABLE_SSL=ON"
+
+# Only need redfish support
+bmcweb.service (meta-ibm\recipes-phosphor\bmcweb\bmcweb) line 1 : 
+[Unit]
+Description=BMC Redfish Server (bmcweb)
+After=network.target
+After=obmc-webserver-pre.target
+
+bmcweb.service (meta-ibm\recipes-phosphor\bmcweb\bmcweb) line 7 : 
+Restart=always
+ExecStart=/usr/bin/env bmcweb
+SyslogIdentifier=bmcweb
+bmcweb.service (meta-phosphor\common\recipes-phosphor\interfaces\bmcweb) line 1 : 
+[Unit]
+Description=Start bmcweb server
+
+Wants=network.target
+After=network.target
+bmcweb.service (meta-phosphor\common\recipes-phosphor\interfaces\bmcweb) line 7 : 
+[Service]
+ExecStart={bindir}/bmcweb
+Type=simple
+WorkingDirectory=/home/root
+
+bmcweb.socket (meta-ibm\recipes-phosphor\bmcweb\bmcweb) line 1 : 
+[Unit]
+Description=Phosphor redfish socket (bmcweb)
+
+[Socket]
+ListenStream=127.0.0.1:8082
+packagegroup-intel-apps.bb (meta-intel\meta-common\recipes-intel\packagegroups) line 48 : 
+        obmc-mgr-system \
+        bmcweb \
+        phosphor-webui \
+        "
+packagegroup-obmc-apps.bbappend (meta-ibm\recipes-phosphor\packagegroups) line 1 : 
+RDEPENDS_${PN}-logging += "ibm-logging"
+RDEPENDS_${PN}-extras += "nginx bmcweb"
+---- bmcweb Search Errors Encountered (254) ----
+The following 254 files could not be processed:
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\add-hover.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\add-variable.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\add-variable.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\add.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\adt-manual\figures\adt-title.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\alert.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\analysis-for-package-splitting.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\analysis-for-package-splitting.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\bash-oecore.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\bash-oecore.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\dev-manual\figures\bitbake-build-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\bitbake-build-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\doc\bitbake-user-manual\figures\bitbake-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\bsp-guide\figures\bsp-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\bsp-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\bsp-guide\figures\bsp-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\bsp-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\build-workspace-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\ref-manual\figures\build-workspace-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\dev-manual\figures\buildhistory-web.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\buildhistory-web.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\dev-manual\figures\buildhistory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\buildhistory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\building-an-image.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\brief-yoctoprojectqs\figures\bypqs-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\bypqs-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\compatible-layers.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\compatible-layers.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\concepts-manual-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\configuration-compile-autoreconf.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\configuration-compile-autoreconf.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\confirmation.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-connectivity\connman\connman-gnome\images\connman-signal-01.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-connectivity\connman\connman-gnome\images\connman-signal-02.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-connectivity\connman\connman-gnome\images\connman-signal-03.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-connectivity\connman\connman-gnome\images\connman-signal-04.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-connectivity\connman\connman-gnome\images\connman-signal-05.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\cross-development-toolchains.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\cross-development-toolchains.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\define-generic.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\ref-manual\figures\define-generic.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\denied.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\dev-manual\figures\dev-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\dev-title.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\doc\template\draft.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\template\draft.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-sato\pcmanfm\files\emblem-symbolic-link.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\error.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\git-workflow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\git-workflow.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-sato\pcmanfm\files\gnome-fs-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-sato\pcmanfm\files\gnome-fs-regular.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-sato\pcmanfm\files\gnome-mime-text-plain.png : File could not be opened.
+C:\ATF\openbmc\meta-openembedded\meta-oe\recipes-extended\gnuplot\gnuplot\gnuplot.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\hosted-service.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\hosted-service.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\image-generation.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\image-generation.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\images.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\images.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\images\images_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\images\images_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\import-layer.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\import-layer.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\index-downloads.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\index-downloads.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\info.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\info\info_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\info\info_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\issues.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\kernel-dev\figures\kernel-architecture-overview.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-architecture-overview.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\kernel-dev\figures\kernel-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\kernel-dev\figures\kernel-dev-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-dev-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-overview-1.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\kernel-dev\figures\kernel-overview-2-generic.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-overview-2-generic.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernel-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernelshark-all.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\kernelshark-all.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernelshark-choose-events.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\kernelshark-choose-events.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernelshark-i915-display.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\kernelshark-i915-display.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\kernelshark-output-display.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\kernelshark-output-display.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\key-dev-elements.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\key-dev-elements.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\layer-input.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\layer-input.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\layers\layers_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\layers\layers_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\img\logo.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\lttngmain0.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\lttngmain0.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\mega-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\new-project.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\new-project.png : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.siproj : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_sym : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xab : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xad : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xm : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xr : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xsb : File could not be opened.
+C:\ATF\openbmc\openbmc.si4project\openbmc.sip_xsd : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\oprofileui-busybox.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\oprofileui-busybox.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\oprofileui-copy-to-user.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\oprofileui-copy-to-user.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\oprofileui-downloading.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\oprofileui-downloading.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\oprofileui-processes.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\oprofileui-processes.png : File could not be opened.
+C:\ATF\openbmc\meta-openembedded\meta-oe\recipes-navigation\orrery\orrery\orrery.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\overview-manual-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\overview-manual-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\package-feeds.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\package-feeds.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\packages\packages_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\packages\packages_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\patching.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\patching.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-probe-do_fork-profile.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-probe-do_fork-profile.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-report-cycles-u.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-report-cycles-u.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-systemwide-libc.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-systemwide-libc.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-systemwide.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-systemwide.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-annotate-menu.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-annotate-menu.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-annotate-udhcpc.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-annotate-udhcpc.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-debuginfo.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-debuginfo.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-dso-zoom-menu.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-dso-zoom-menu.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-dso-zoom.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-dso-zoom.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-busybox-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-busybox-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-flat-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-flat-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-g-copy-from-user-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-g-copy-from-user-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-g-copy-to-user-expanded-debuginfo.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-g-copy-to-user-expanded-debuginfo.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-g-copy-to-user-expanded-stripped-unresolved-hidden.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-g-copy-to-user-expanded-stripped-unresolved-hidden.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\perf-wget-g-copy-to-user-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\perf-wget-g-copy-to-user-expanded-stripped.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\template\poky-ref-manual.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\poky-reference-distribution.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\poky-reference-distribution.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\poky-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\ref-manual\figures\poky-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\profile-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\profile-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\pybootchartgui-linux-yocto.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\pybootchartgui-linux-yocto.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\pychart-linux-yocto-rpm-nostrip.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\pychart-linux-yocto-rpm-nostrip.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\pychart-linux-yocto-rpm.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\pychart-linux-yocto-rpm.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\dev-manual\figures\recipe-workflow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\recipe-workflow.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\recipe\recipe_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\recipe\recipe_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\refresh.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\remove-hover.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\remove.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-sato\rxvt-unicode\rxvt-unicode\rxvt.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sched-wakeup-profile.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\sched-wakeup-profile.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-autotools-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-autotools-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-devtool-add-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-devtool-add-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-devtool-modify-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-devtool-modify-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-devtool-upgrade-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-devtool-upgrade-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-eclipse-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-eclipse-dev-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-environment.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-environment.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-generation.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\sdk-generation.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-installed-extensible-sdk-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-installed-extensible-sdk-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-installed-standard-sdk-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-installed-standard-sdk-directory.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-makefile-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-makefile-flow.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\sdk-manual\figures\sdk-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sdk.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\sdk.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\set-variable.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\set-variable.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\settings\settings_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\settings\settings_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\simple-configuration.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\simple-configuration.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\source-fetching.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\source-fetching.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\source-input.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\source-input.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\source-repos.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\source-repos.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sysprof-callers.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\sysprof-callers.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sysprof-copy-from-user.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\sysprof-copy-from-user.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\sysprof-copy-to-user.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\profile-manual\figures\sysprof-copy-to-user.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\templates\templates_display.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\templates\templates_hover.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\bb\ui\icons\indicators\tick.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\toaster-title.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\toaster-title.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\img\toaster_bw.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_diagonals-thick_18_b81900_40x40.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_diagonals-thick_20_666666_40x40.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_flat_10_000000_40x100.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_glass_100_f6f6f6_1x400.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_glass_100_fdf5ce_1x400.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_glass_65_ffffff_1x400.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_gloss-wave_35_f6a828_500x100.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_highlight-soft_100_eeeeee_1x100.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-bg_highlight-soft_75_ffe45c_1x100.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-icons_222222_256x240.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-icons_228ef1_256x240.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-icons_ef8c08_256x240.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-icons_ffd27a_256x240.png : File could not be opened.
+C:\ATF\openbmc\poky\bitbake\lib\toaster\toastergui\static\css\images\ui-icons_ffffff_256x240.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\user-configuration.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\user-configuration.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\adt-manual\figures\using-a-pre-built-image.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\using-a-pre-built-image.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\variable-added.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\toaster-manual\figures\variable-added.png : File could not be opened.
+C:\ATF\openbmc\poky\meta\recipes-graphics\wayland\weston\weston.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\template\yocto-project-qs.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\brief-yoctoprojectqs\figures\yocto-project-transp.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\yocto-project-transp.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\yp-download.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\yp-download.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\mega-manual\figures\YP-flow-diagram.png : File could not be opened.
+C:\ATF\openbmc\poky\documentation\overview-manual\figures\YP-flow-diagram.png : File could not be opened.
